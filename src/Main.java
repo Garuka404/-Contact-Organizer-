@@ -38,6 +38,23 @@ public class Main {
 
         return option;
     }
+    public static String[] Slen(String[] val){
+        String[] temp=new String[val.length+1];                                      //contact page
+        for(int k=0;k<val.length;k++){
+            temp[k]=val[k];
+        }
+        val=temp;
+        return val;
+    }
+    public static long[] Ilen(long[] num){
+        long[] temp=new long[num.length+1];                                      //contact page
+        for(int k=0;k<num.length;k++){
+            temp[k]=num[k];
+        }
+        num=temp;
+        return num;
+    }
+
     public static void contact(){
         Scanner scan=new Scanner(System.in);
 
