@@ -128,6 +128,106 @@ public class Main {
 
         Main2();
     }
+    public static void Search(){
+        Scanner scan=new Scanner(System.in);
+
+        System.out.println("+---------------------------------------------------+");
+        System.out.println("|                   UPDATE Contact                  |");
+        System.out.println("+---------------------------------------------------+");
+        char s= ' ';
+
+        System.out.print("Search Contact by Name or Phone Number - ");
+        String search=scan.next();
+
+        int count=0,index=0;
+        for(int i=0;i<CName.length;i++){
+            count=0;
+            String num=CName[i];
+            if(search.length()==num.length()){
+                for(int j=0;j<num.length();j++){
+                    char n=search.charAt(j);
+                    char m=num.charAt(j);
+                    // System.out.println(n+" "+m);
+                    if(n==m){
+                        count++;
+
+                    }
+                    if(count==search.length()){
+                        index=i;
+                    }
+                }
+                // System.out.println("count "+count);
+                if(count==search.length()){
+                    //  System.out.print("\nfound"+search);
+
+                    System.out.println("\tContact ID        : "+CId[index]);
+                    System.out.println("\tName              : "+CName[index]);
+                    System.out.println("\tPhone Number      : "+CPhoneNumber[index]);
+                    System.out.println("\tCompany Name      : "+CComnanyname[index]);
+                    System.out.println("\tSalary            : "+CSalary[index]);
+                    System.out.println("\tB'Day(YYYY-MM-DD) : "+Cdate[index]);
+
+                    do{
+                        System.out.print("\n\nwhat do you want to update...");
+                        System.out.println("\n\n\t[01] Name"
+                                +"\n\t[02] Phone Number"
+                                +"\n\t[03] Company Name"
+                                +"\n\t[04] Salary ");
+                        System.out.print("Enter an option to continue ->");
+                        int op=scan.nextInt();
+                        System.out.println("\n\n");
+                        if(op>0 && op<5){
+                            switch(op){
+                                case 1:
+                                    System.out.println("Update Name");
+                                    System.out.println("==============");
+                                    System.out.println("Input new name - ");
+                                    String name1=scan.next();
+                                    CName[index]=name1;
+                                    break;
+                                case 2:
+                                    System.out.println("Update Phone Number");
+                                    System.out.println("==============");
+                                    System.out.println("Input new Phone Number - ");
+                                    String phone1=scan.next();
+                                    CPhoneNumber[index]=phone1;
+                                    break;
+                                case 3:
+                                    System.out.println("Update Company Name");
+                                    System.out.println("==============");
+                                    System.out.println("Input new Company Name - ");
+                                    String company1=scan.next();
+                                    CComnanyname[index]=company1;
+                                    break;
+                                case 4:
+                                    System.out.println("Update Salary");
+                                    System.out.println("==============");
+                                    System.out.println("Input new Salary - ");
+                                    int salary1=scan.nextInt();
+                                    CSalary[index]=salary1;
+                                    break;
+                            }
+
+                            System.out.println("\tContact has been updte succesfully...");
+                            break;
+                        }
+                        System.out.print("\n\nDo you want to add another Contact(Y/N):");
+                        s=scan.next().charAt(0);
+
+                    }while(s=='Y');
+
+
+                }else{
+                    System.out.println("Invalid  Name or Phone Number !!!!!!!! ");
+                }
+
+            }
+        }
+
+
+        Main2();
+
+    }
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }
