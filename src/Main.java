@@ -228,6 +228,35 @@ public class Main {
         Main2();
 
     }
+    public static String[] SDlen(String[] val,int index){
+        String[] temp=new String[val.length-1];                                      //contact page
+        for(int k=0;k<val.length;k++){
+            if(index==k){
+                continue;
+            }
+            else{
+                temp[k]=val[k];
+
+            }
+
+        }
+        val=temp;
+        return val;
+    }
+    public static long[] IDlen(long[] num,int index){
+        long[] temp=new long[num.length-1];                                      //contact page
+        for(int k=0;k<num.length;k++){
+            if(index==k){
+                continue;
+            }
+            else{
+                temp[k]=num[k];
+
+            }
+        }
+        num=temp;
+        return num;
+    }
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }
