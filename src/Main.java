@@ -1,4 +1,7 @@
+import java.util.Scanner;
+
 public class Main {
+
     public static int home(){
         Scanner scan=new Scanner(System.in);
         int option;
@@ -256,6 +259,23 @@ public class Main {
         }
         num=temp;
         return num;
+    }
+    public static void delete(){
+        Scanner scan=new Scanner(System.in);
+        System.out.println("+---------------------------------------------------+");
+        System.out.println("|                   DELETE Contact                  |");
+        System.out.println("+---------------------------------------------------+");
+
+        System.out.println("\n\n");
+        int index = find();
+        System.out.print("\n\nDo you want to delete this Contact(Y/N): ");
+        char d=scan.next().charAt(0);
+        if(d=='Y'){
+            CName=SDlen(CName,index);
+
+            System.out.println("name "+Arrays.toString(CName));
+        }
+
     }
     public static void main(String[] args) {
         System.out.println("Hello world!");
