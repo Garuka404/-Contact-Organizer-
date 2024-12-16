@@ -1,7 +1,12 @@
 import java.util.Scanner;
 
 public class Main {
-
+    public static String[] CId=new String[0];
+    public static String[] CName=new String[0];
+    public static String[] CComnanyname=new String[0];
+    public static String[] CPhoneNumber=new String[0];
+    public static long[] CSalary =new long[0];
+    public static String[] Cdate=new String[0];
     public static int home(){
         Scanner scan=new Scanner(System.in);
         int option;
@@ -275,6 +280,55 @@ public class Main {
 
             System.out.println("name "+Arrays.toString(CName));
         }
+
+    }
+    public static int find(){
+        Scanner scan=new Scanner(System.in);
+        char s= ' ';
+
+        System.out.print("Search Contact by Name or Phone Number - ");
+        String search=scan.next();
+
+        int count=0,index=0;
+        for(int i=0;i<CName.length;i++){
+            count=0;
+            String num=CName[i];
+            if(search.length()==num.length()){
+                for(int j=0;j<num.length();j++){
+                    char n=search.charAt(j);
+                    char m=num.charAt(j);
+                    // System.out.println(n+" "+m);
+                    if(n==m){
+                        count++;
+
+                    }
+                    if(count==search.length()){
+                        index=i;
+                    }
+                }
+                // System.out.println("count "+count);
+                if(count==search.length()){
+                    //  System.out.print("\nfound"+search);
+
+                    System.out.println("\tContact ID        : "+CId[index]);
+                    System.out.println("\tName              : "+CName[index]);
+                    System.out.println("\tPhone Number      : "+CPhoneNumber[index]);
+                    System.out.println("\tCompany Name      : "+CComnanyname[index]);
+                    System.out.println("\tSalary            : "+CSalary[index]);
+                    System.out.println("\tB'Day(YYYY-MM-DD) : "+Cdate[index]);
+
+                }
+                else{
+                    System.out.println("\n\t No contact found for "+search+"...");
+                }
+            }
+            else{
+                System.out.println("\n\t No contact found for "+search+"...");
+            }
+        }
+        Main2();
+        return index;
+
 
     }
     public static void main(String[] args) {
