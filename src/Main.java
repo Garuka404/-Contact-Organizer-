@@ -331,6 +331,23 @@ public class Main {
 
 
     }
+    public static void sort(){
+        Scanner scan=new Scanner(System.in);
+        System.out.println("\n\n+---------------------------------------------------+");
+        System.out.println("|                   SORT Contact                    |");
+        System.out.println("+---------------------------------------------------+");
+
+
+        System.out.println("\n\t[01] Sorting by Name"+
+                "\n\n\t[02] Sorting by Salary"+
+                "\n\n\t[03] Sorting by Birthday");
+
+        System.out.print("Enter an option to continue ->");
+        int opn=scan.nextInt();
+        System.out.println("\n\n");
+
+
+    }
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }
