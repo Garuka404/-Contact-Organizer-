@@ -346,8 +346,64 @@ public class Main {
         int opn=scan.nextInt();
         System.out.println("\n\n");
 
+        switch(opn){
+            case 1:
+                Sname();
+                break;
+
+
+
+        }
+
 
     }
+
+    public static void tempName(){
+
+        for(int x=0;x<CName.length-1;x++){
+
+            for(int i=0;i<CName.length-1-x;i++){
+                if (CName[i].compareTo(CName[i + 1]) > 0) {
+
+                    String temp = CName[i];
+                    CName[i] = CName[i + 1];
+                    CName[i + 1] = temp;
+                    int temp2=tempid[i];
+                    tempid[i]=tempid[i+1];
+                    tempid[i+1]=temp2;
+
+                }
+
+            }
+        }
+
+    }
+    public static void Sname(){
+        Scanner scan=new Scanner(System.in);
+        System.out.println("\n\n+---------------------------------------------------+");
+        System.out.println("|                 List Contact by Name              |");
+        System.out.println("+---------------------------------------------------+");
+        tempName();
+        System.out.println("\n\n+--------------------------------------------------------------------------------------------------+");
+        System.out.println("|   Contact ID   |    Name    |    Phone Number    |    Company      |   Salary    |    Birthday   |");
+        System.out.println("+--------------------------------------------------------------------------------------------------+");
+
+
+
+        for(int i=0;i<tempid.length;i++){
+
+            int x=tempid[i];
+
+            System.out.printf(
+                    "| %-14s | %-10s | %-17s | %-14s  | %11.2f  | %-13s |%n",
+                    CId[x], CName[i], CPhoneNumber[x], CComnanyname[x],(double) CSalary[x], Cdate[x]
+            );
+
+        }
+        System.out.println("+--------------------------------------------------------------------------------------------------+");
+        Main2();
+    }
+
     public static void main(String[] args) {
         System.out.println("Hello world!");
     }
