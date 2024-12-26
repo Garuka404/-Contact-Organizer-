@@ -1,5 +1,5 @@
 import java.util.Scanner;
-
+import java.util.*;
 public class Main {
     public static String[] CId=new String[0];
     public static String[] CName=new String[0];
@@ -7,6 +7,9 @@ public class Main {
     public static String[] CPhoneNumber=new String[0];
     public static long[] CSalary =new long[0];
     public static String[] Cdate=new String[0];
+    public static String [] tempName=new String[0];
+    public static  long [] tempid=new long[0];
+    public static long[] tempSalary =new long[0];
     public static int home(){
         Scanner scan=new Scanner(System.in);
         int option;
@@ -277,10 +280,14 @@ public class Main {
         char d=scan.next().charAt(0);
         if(d=='Y'){
             CName=SDlen(CName,index);
+            CId=SDlen(CId,index);
+            CPhoneNumber=SDlen(CPhoneNumber,index);
+            CComnanyname=SDlen(CComnanyname,index);
+            CSalary=IDlen(CSalary,index);
+            Cdate=SDlen(Cdate,index);
 
-            System.out.println("name "+Arrays.toString(CName));
         }
-
+        Main2();
     }
     public static int find(){
         Scanner scan=new Scanner(System.in);
@@ -316,21 +323,79 @@ public class Main {
                     System.out.println("\tCompany Name      : "+CComnanyname[index]);
                     System.out.println("\tSalary            : "+CSalary[index]);
                     System.out.println("\tB'Day(YYYY-MM-DD) : "+Cdate[index]);
-
+                    break;
                 }
                 else{
                     System.out.println("\n\t No contact found for "+search+"...");
                 }
             }
             else{
-                System.out.println("\n\t No contact found for "+search+"...");
+                if(i==CName.length-1){
+                    System.out.println("\n\t No contact found for "+search+"...");
+                }
             }
         }
-        Main2();
+
         return index;
 
 
     }
+    public static void find2(){
+        Scanner scan=new Scanner(System.in);
+        char s= ' ';
+
+        System.out.print("Search Contact by Name or Phone Number - ");
+        String search=scan.next();
+
+        int count=0,index=0;
+        for(int i=0;i<CName.length;i++){
+            count=0;
+            String num=CName[i];
+            if(search.length()==num.length()){
+                for(int j=0;j<num.length();j++){
+                    char n=search.charAt(j);
+                    char m=num.charAt(j);
+                    // System.out.println(n+" "+m);
+                    if(n==m){
+                        count++;
+
+                    }
+                    if(count==search.length()){
+                        index=i;
+                    }
+                }
+                // System.out.println("count "+count);
+                if(count==search.length()){
+                    //  System.out.print("\nfound"+search);
+
+                    System.out.println("\tContact ID        : "+CId[index]);
+                    System.out.println("\tName              : "+CName[index]);
+                    System.out.println("\tPhone Number      : "+CPhoneNumber[index]);
+                    System.out.println("\tCompany Name      : "+CComnanyname[index]);
+                    System.out.println("\tSalary            : "+CSalary[index]);
+                    System.out.println("\tB'Day(YYYY-MM-DD) : "+Cdate[index]);
+                    break;
+                }
+                else{
+                    if(i==CName.length-1){
+                        System.out.println("\n\t No contact found for "+search+"...");
+                    }
+                }
+            }
+            else{
+                if(i==CName.length-1){
+                    System.out.println("\n\t No contact found for "+search+"...");
+                }
+
+            }
+        }
+
+
+        Main2();
+
+    }
+
+
     public static void sort(){
         Scanner scan=new Scanner(System.in);
         System.out.println("\n\n+---------------------------------------------------+");
@@ -350,31 +415,70 @@ public class Main {
             case 1:
                 Sname();
                 break;
-
+            case 2:
+                Ssalary();
+                break;
 
 
         }
 
 
     }
+    public static void  sortName(){
 
-    public static void tempName(){
+        for(int i=0;i<CName.length;i++){
+            tempName=Slen(tempName);
+            tempName[tempName.length-1]=CName[i];
+            tempid=Ilen(tempid);
+            tempid[tempid.length-1]=i;
+        }
 
-        for(int x=0;x<CName.length-1;x++){
+        for(int x=0;x<CName.length;x++){
 
-            for(int i=0;i<CName.length-1-x;i++){
-                if (CName[i].compareTo(CName[i + 1]) > 0) {
+            for(int i=1;i<CName.length-x;i++){
+                if (tempName[i-1].compareTo(tempName[i]) > 0) {
 
-                    String temp = CName[i];
-                    CName[i] = CName[i + 1];
-                    CName[i + 1] = temp;
-                    int temp2=tempid[i];
-                    tempid[i]=tempid[i+1];
-                    tempid[i+1]=temp2;
+                    String temp = tempName[i-1];
+                    tempName[i-1] = tempName[i];
+                    tempName[i] = temp;
+                    long temp2=tempid[i-1];
+                    tempid[i-1]=tempid[i];
+                    tempid[i]=temp2;
 
                 }
 
             }
+
+
+        }
+
+    }
+    public static void  sortSalary(){
+
+        for(int i=0;i<CName.length;i++){
+            tempSalary =Ilen(tempSalary );
+            tempSalary[tempSalary.length-1]=CSalary[i];
+            tempid=Ilen(tempid);
+            tempid[tempid.length-1]=i;
+        }
+
+        for(int x=0;x<CName.length;x++){
+
+            for(int i=1;i<CName.length-x;i++){
+                if (tempSalary [i-1]>(tempSalary [i])) {
+
+                    long temp = tempSalary [i-1];
+                    tempSalary [i-1] = tempSalary [i];
+                    tempSalary [i] = temp;
+                    long temp2=tempid[i-1];
+                    tempid[i-1]=tempid[i];
+                    tempid[i]=temp2;
+
+                }
+
+            }
+
+
         }
 
     }
@@ -383,7 +487,7 @@ public class Main {
         System.out.println("\n\n+---------------------------------------------------+");
         System.out.println("|                 List Contact by Name              |");
         System.out.println("+---------------------------------------------------+");
-        tempName();
+        sortName();
         System.out.println("\n\n+--------------------------------------------------------------------------------------------------+");
         System.out.println("|   Contact ID   |    Name    |    Phone Number    |    Company      |   Salary    |    Birthday   |");
         System.out.println("+--------------------------------------------------------------------------------------------------+");
@@ -392,19 +496,89 @@ public class Main {
 
         for(int i=0;i<tempid.length;i++){
 
-            int x=tempid[i];
+            long x=tempid[i];
+            int y=(int)x;
+
 
             System.out.printf(
                     "| %-14s | %-10s | %-17s | %-14s  | %11.2f  | %-13s |%n",
-                    CId[x], CName[i], CPhoneNumber[x], CComnanyname[x],(double) CSalary[x], Cdate[x]
+                    CId[y], CName[y], CPhoneNumber[y], CComnanyname[y],(double) CSalary[y], Cdate[y]
             );
 
         }
         System.out.println("+--------------------------------------------------------------------------------------------------+");
+
+
+        tempName=new String[0];
+        tempid=new long[0];
+
+        Main2();
+    }
+    public static void Ssalary(){
+        Scanner scan=new Scanner(System.in);
+        System.out.println("\n\n+---------------------------------------------------+");
+        System.out.println("|                 List Contact by Name              |");
+        System.out.println("+---------------------------------------------------+");
+        sortSalary();
+        System.out.println("\n\n+--------------------------------------------------------------------------------------------------+");
+        System.out.println("|   Contact ID   |    Name    |    Phone Number    |    Company      |   Salary    |    Birthday   |");
+        System.out.println("+--------------------------------------------------------------------------------------------------+");
+
+
+
+        for(int i=0;i<tempid.length;i++){
+
+            long x=tempid[i];
+            int y=(int)x;
+
+
+            System.out.printf(
+                    "| %-14s | %-10s | %-17s | %-14s  | %11.2f  | %-13s |%n",
+                    CId[y], CName[y], CPhoneNumber[y], CComnanyname[y],(double) CSalary[y], Cdate[y]
+            );
+
+        }
+        System.out.println("+--------------------------------------------------------------------------------------------------+");
+
+
+        tempSalary=new long[0];
+        tempid=new long[0];
+
         Main2();
     }
 
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
+    public static void Main2(){
+
+        int op=home();
+        switch(op){
+            case 1:
+                contact();
+                break;
+
+            case 2:
+                Search();
+                break;
+            case 3:
+                delete();
+                break;
+            case 4:
+                find2();
+                break;
+            case 5:
+                sort();
+                break;
+            case 6:
+                break;
+        }
+
+    }
+    public static void main (String[] args) {
+
+
+        System.out.println();
+        Main2();
+
+
+
     }
 }
